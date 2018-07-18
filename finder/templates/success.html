@@ -1,0 +1,116 @@
+<html>
+<head>
+	<title>{% block title %}Movie Recommendation{% endblock %}</title>
+	{% load staticfiles %}
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+	<link rel="stylesheet" type="text/css" href="{% static '/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/tables.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/custom.css' %}" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+        
+
+<style>
+	.navli .nava {
+		color: white !important;
+	}
+	.navli:hover .nava:hover {
+		color: #707677 !important;
+	}
+	.buttons{
+		margin-left: 50%
+	}
+	#play_button {
+    position:absolute;
+    transition: .5s ease;
+    top: 28%;
+    left: 38%;
+}
+</style>
+
+        
+</head>
+
+
+<body>
+
+
+<nav class="navbar navbar-inverse"  style ="background-color: #CB2027;font-family:monospace;border-color: #CB2027">
+    <div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle">
+		</button>
+		<a class="navbar-brand" href="#" style="color:white">Registration Form</a>
+	</div>
+	<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'home' %}" class="nava">	
+					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;
+					Home
+				</a>
+			</li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'about' %}" class="nava">	
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
+					About
+				</a>
+			</li>
+	</ul>
+</nav>
+
+<h2 style ="text-align: center;color: #CB2027;font-family:monospace;">Successfully Registered</h2><!--Form-->
+<p style ="text-align: center;color: #CB2027;font-family:monospace;">(Continue to login)</p>
+<br>
+	<div id="play_button" class="center" >
+  		<a href="{% url 'login' %}" class="btnBottom red" class="center">Continue</a>
+	</div>
+<br>
+<br>
+
+
+
+{% if message %}
+<script>
+    alert('RegisteredSuccesfully');
+</script>
+{% endif %}
+{% if form_error %}
+<script>
+    alert('Username Exists');
+</script>
+{% endif %}
+
+</body>
+</html>
+
+<!--  
+<body>
+ <h1>WElcome to the prject</h1>
+   <form method="POST" action="" class="post-form">{% csrf_token %}
+{{ form.as_p }}
+
+        
+{% for field in form %}
+	{% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+	<label>{{ field.label_tag }}</label>
+	<div> {{ field }} </div>	
+{% endfor %}
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% if message %}
+    <script>
+    	alert('RegisteredSuccesfully')
+
+    </script>
+{% endif %}
+</body> -->
+

@@ -1,0 +1,117 @@
+<html>
+<head>
+	<title>{% block title %}Movie Recommendation{% endblock %}</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+	<link rel="stylesheet" type="text/css" href="{% static '/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/background.css' %}" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	{% if backq == 1 %}
+		<meta http-equiv="refresh" content="0;url=http://127.0.0.1:8000/movie/{{alb.m_title}}" />
+	{% endif %}
+	{% if backq == 2 %}
+		<meta http-equiv="refresh" content="0;url=http://127.0.0.1:8000/profile/{{tm}}" />
+	{% endif %}
+
+
+
+    
+
+<style>
+	.navli .nava {
+		color: white !important;
+	}
+	.navli:hover .nava:hover {
+		color: #707677 !important;
+	}
+	h3.ex1 {
+    	padding-left: 3%;
+	}
+	ex1 {
+    	padding-left: 3%;
+	}
+	.checked{
+		color: orange;
+	}
+</style>
+
+        
+</head>
+<body>
+	<nav class="navbar navbar-inverse"  style ="background-color: #CB2027;font-family:monospace;border-color: #CB2027">
+    <div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle">
+		</button>
+		<a class="navbar-brand" href="#" style="color:white">Welcome {{tm}}</a>
+	</div>
+	<ul class="nav navbar-nav navbar-right">
+		<li class="navli" style="margin-top=25px;">
+			<form id="searchform" action="{% url 'search' %}" method="GET" >
+		      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+  		      <button style="padding-bottom:6px;padding-top:6px;margin-top:7px;" class="searchbutton" type="submit">
+		        <i class="fa fa-search"></i>
+		      </button>
+			</form>
+		</li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'home' %}" class="nava">	
+					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;
+					Home
+				</a>
+			</li>
+	</ul>
+	{% if tm == ""%}
+		<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'login' %}" class="nava">	
+					<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;
+					Login
+				</a>
+			</li>
+		</ul>
+	{% else %}
+		<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'logout' %}" class="nava">	
+					<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;
+					Logout
+				</a>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'custprof' tm%}" class="nava">	
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+					Profile
+				</a>
+			</li>
+		</ul>
+	{% endif%}
+	<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'about' %}" class="nava">	
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
+					About
+				</a>
+			</li>
+	</ul>
+	</nav>
+	</div>
+	{% block content %}
+	{% endblock %}
+<footer class="footer" >
+        <div class="text-center">
+            <p class="text-muted">
+                <i class="fa fa-copyright"></i> 2018-2018 Sheldon Tauro , Nitin Raj Singh &amp; Ravi Chandra 
+            </p>
+        </div>
+</footer>
+</body>
+</html>
+ 	

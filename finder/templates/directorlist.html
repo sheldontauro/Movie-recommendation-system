@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!-- all_directors ,tm -->
+<link rel="stylesheet" href="{% static 'carou.css' %}">
+<div class="container">
+     <div class="row ">
+       <div class="col-md-10 movie-list">
+         {% for direc in all_directors %}
+         <div class="container movie-card">
+           <div class="row">
+             <div class="col-md-1">
+               <img src="{{direc.d_link}}" width=80 height=102>
+             </div>
+             <div class="col-md-11">
+               <div class="row" style="margin-left: auto; margin-right: auto;">
+                 <a class="movie-title" href="/directors/{{direc.d_name}}">{{direc.d_name}}</a>
+               </div>
+               <div class="row">
+                 <p>{{direc.d_bio}}</p>
+               </div>
+             </div>
+           </div>
+         </div>
+         {% endfor %}
+       </div>
+       <div class="col-md-2 side">
+         <div class="container taga" style = "background-color:rgb(240,240,240)">
+           <p class="left"><img src="{% static 'images/tag_icon.png' %}" width=30 height=30>TAGS</p>
+            <div class="row text-center rowa" style = "background-color:rgb(185,185,185)">
+               <a href="/genre/action">action</a>
+            </div>
+            <div class="row text-center rowa" style = "background-color:rgb(185,185,185)">
+               <a href="/genre/sci-fi">sci-fi</a>
+            </div>
+            <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+                <a href="/genre/animation">animation</a>
+            </div>
+            <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+                <a href="/genre/crime">crime</a>
+            </div>
+           <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+              <a href="/genre/horror">horror</a>
+           </div>
+           <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+              <a href="/directors">directors</a>
+           </div>
+           </div>
+         </div>
+       </div>
+     </div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if all_movies.has_previous %}
+            <a href="?page={{ all_directors.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ all_directors.number }} of {{ all_directors.paginator.num_pages }}
+        </span>
+
+        {% if all_directors.has_next %}
+            <a href="?page={{ all_directors.next_page_number }}">Next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

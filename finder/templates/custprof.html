@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<!-- {{tm}} {{tm1.Genre1}} {{tm1.Genre2}} {{tm1.Genre3}} {{tm1.im_link}}
+
+	--> 
+	<link rel="stylesheet"  href="{% static 'profile.css' %}">
+	<div class="container profile">
+		<div class="row">
+			<div class = "col-md-3">
+				  <img src="{{tm1.im_link}}" alt="John" width=300 height=300 style="display:block;margin:auto;">
+				  <h1 class="text-center">{{tm}}</h1>
+				  <!-- Button trigger modal -->
+				  <button class="btn btn-primary btn-lg" style = "position:relative;top:50%;left:25%;"data-toggle="modal" data-target="#myModalHorizontal">
+				      update profile pic
+				  </button>
+
+				  <!-- Modal -->
+				  <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" 
+				       aria-labelledby="myModalLabel" aria-hidden="true">
+				      <div class="modal-dialog">
+				          <div class="modal-content">
+				              <!-- Modal Header -->
+				              <div class="modal-header">
+				                  <button type="button" class="close" 
+				                     data-dismiss="modal">
+				                         <span aria-hidden="true">&times;</span>
+				                         <span class="sr-only">Close</span>
+				                  </button>
+				                  <h4 class="modal-title" id="myModalLabel">
+				                      Enter the link to your picture(preferably of size 300x300)
+				                  </h4>
+				              </div>
+				              
+				              <!-- Modal Body -->
+				             <form class="form-horizontal" method="get" role="form">
+				              		<div class="modal-body">
+				                  
+				                  
+					                    <div class="form-group">
+					                      <label class="col-sm-2 control-label"
+					                            for="inputPassword3">link</label>
+					                      <div class="col-sm-10">
+					                          <input type="text" class="form-control" name="dpurl" 
+					                              id="inputPassword3" placeholder="link"/>
+					                      </div>
+					                    </div>
+					              	</div>
+				              
+					              <!-- Modal Footer -->
+					              <div class="modal-footer">
+					                  <button type="button" class="btn btn-default"
+					                          data-dismiss="modal">
+					                              Close
+					                  </button>
+					                  <button type="submit" class="btn btn-primary">
+					                      Save changes
+					                  </button>
+					              </div>
+				             </form>
+
+				          </div>
+				      </div>
+				  </div>
+				
+			</div>
+			<div class="col-md-4">
+				<!-- <div class="container"> -->
+				 <div class="jumbotron">
+				  <h3 style="text-align:center;color: #f51a00;font-family:Arial;">RECOMMENDED MOVIES</h3>    
+				  </div>     
+				  <table class="table table-striped">
+				    <tbody>
+				    	{% for mv in result %}
+				    	 <tr>
+				    	   <td><a href="{% url 'movieprof' mv.m_title %}">{{mv.m_title}}</a></td>
+				    	   {% if isreviewer == 0%}
+				    	   <td><div class="dropdown col-md-3">
+							    <button class="btn dropdown-toggle" style="background-color: transparent;" type="button" data-toggle="dropdown">Rate
+							    <span class="caret"></span></button>
+							    <ul class="dropdown-menu">
+							      <li><a href="/movie/{{ mv.m_title }}/101">1</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/102">2</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/103">3</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/104">4</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/105">5</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/106">6</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/107">7</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/108">8</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/109">9</a></li>
+							      <li><a href="/movie/{{ mv.m_title }}/110">10</a></li>
+							     </ul></div>
+							</td>
+				    	   <td>
+				    	   		<a href="/movie/{{ mv.m_title }}/100" class="btn btn-info" role="button">Watch</a>
+				    	   </td>
+				    	   	{% endif %}
+				    	 </tr>
+				    	{% endfor %}
+				    	
+				    </tbody>
+				  </table>
+			</div>
+			<div class="col-md-4">
+					{% if isreviewer == 0 %}
+					<div class="jumbotron">
+				  		<h3 style="text-align:center;color: #f51a00;font-family:Arial;">RECENTLY WATCHED</h3>    
+				  	</div> 
+				  	{% else %}
+				  	<div class="jumbotron">
+				  		<h3 style="text-align:center;color: #f51a00;font-family:Arial;">RECENTLY RATED</h3>    
+				  	</div>
+				  	{% endif %}
+					<table class="table table-striped">
+				    <tbody>
+				    	
+						{% for mv in all_movies%}
+						<tr>
+						<td>
+						<li style = "text-align:center;font-family:Arial;">
+								<a href="{%url 'movieprof' mv.c_movie_title%}">{{mv.c_movie_title}}</a></span>
+								<br>
+						</li>
+						</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+					</table>
+			</div>
+		</div>
+	</div>
+
+<script>
+	$("td").hover(function(){
+    $(this).css("background-color", "transparent");
+    }, function(){
+    $(this).css("background-color", "transparent");
+});
+</script>
+{% endblock %}
+

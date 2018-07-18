@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'carou.css' %}">
+<div class="container">
+     <div class="row ">
+       <div class="col-md-10 movie-list">
+       {% if all_movies %}
+         {% for movie in all_movies %}
+         <div class="container movie-card">
+           <div class="row">
+             <div class="col-md-1">
+               <img src="{{movie.m_url}}" width=80 height=102>
+             </div>
+             <div class="col-md-11">
+               <div class="row">
+                 <a class="movie-title" href="{% url 'movieprof' movie.m_title %}">{{movie.m_title}}</a>
+               </div>
+               <div class="row">
+                 <div class="col-md-6">
+                   <span class="rating">
+                    <p class="left"><img src="{% static 'images/rate.jpeg' %}"> {{movie.m_urating}}</p>
+                   </span>
+                 </div>
+                 <div class="col-md-6">
+                    {% if movie.m_rrating > bad1  %}
+                     <p class="meta-score">Metascore: 
+                        <span style="display:block"class="text-center m_score1">{{movie.m_rrating}}</span>
+                     </p>
+                    {% elif movie.m_rrating > bad2 %}
+                     <p class="meta-score">Metascore:
+                        <span style="display:block" class="text-center m_score2">{{movie.m_rrating}}</span>
+                     </p>
+                    {% else %}
+                      <p class="meta-score">Metascore: 
+                          <span style="display:block" class="text-center m_score3">{{movie.m_rrating}}</span>
+                      </p>
+                    {%endif%}
+                 </div>
+                 <p>{{movie.m_description}}</p>
+               </div>
+             </div>
+           </div>
+         </div>
+         {% endfor %}
+         {% else %}
+          <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="alert-danger">Sorry the page couldn't be displayed</h2> 
+                </div>
+            </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <br>
+                  <img data-toggle='tooltip' title=':('  class="img-responsive center-block" src="{% static 'images/smile.png' %}" alt="Sorry!"/>
+                  <br>
+              </div>
+          </div>
+         {%endif%}
+       	</div>
+       </div>
+     </div>
+</div>
+{% if all_movies %}
+<div class="pagination">
+    <span class="step-links">
+        {% if all_movies.has_previous %}
+            <a href="?page={{ all_movies.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ all_movies.number }} of {{ all_movies.paginator.num_pages }}
+        </span>
+
+        {% if all_movies.has_next %}
+            <a href="?page={{ all_movies.next_page_number }}">Next</a>
+        {% endif %}
+    </span>
+</div>
+{%endif%}
+{% endblock %}

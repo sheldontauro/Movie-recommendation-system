@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+	<h3 style ="text-align: center;color: #CB2027;font-family:Arial; padding-bottom: 10px">{{alb.m_title}} {{alb.m_year}}
+	{% if tm != "" %}
+		{% for mv in all_movies %}
+			{% if mv.c_movie_title == alb.m_title%}
+				<img src="https://vignette.wikia.nocookie.net/camphalfbloodroleplay/images/5/5a/Checkmark.png/revision/latest?cb=20120103192321" width="20" height="20">	
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	</h3>
+	<p style ="text-align: center;color: #000;font-family:Arial; padding-bottom: 10px">{{alb.m_description}} {{rate1}}</p>
+	<div class="row">
+		<div class="col-md-1">
+          
+         </div>
+		<div class="col-md-3">
+			<img src="{{alb.m_url}}" width="300" height="300">
+			{%if update1 == 1%}
+			    <h5 style ="text-align: center;color: #4BB543; font-family:Arial; padding-bottom: 7px"><b><span style = "color: #000">STATUS:</span> Watched	</b></h5>
+			{% else %}
+				<h5 style ="text-align: center;color: #FF0000; font-family:Arial; padding-bottom: 7px"><b><span style = "color: #000">STATUS:</span> Yet to Watch	</b></h5>
+			{% endif %}
+		</div>
+		<div class = "col-md-8	">
+			<div class="col-md-4" style="background-color: #08E8DE;">
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px"><b>Director:</b></h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px"><b>Users Rating:</b></h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px"><b>Reviewers Rating:</b></h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px"><b>Duration:</b></h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px"><b>Genre:</b></h5>
+				{% if cate1 > 0 %}
+					<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px"><b>Your Rating:</b></h5>
+				{% endif %}
+
+			</div>
+			<div class="col-md-4" style="background-color:  #CD7F32">
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px"><a href="/directors/{{alb.m_dir}}">{{alb.m_dir}}</a></h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px">{{alb.m_urating}}</h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px">{{alb.m_rrating}}</h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px">{{alb.m_duration}}</h5>
+				<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px">{{alb.m_genre}}</h5>
+				{% if cate1 > 0 %}
+					<h5 style ="text-align: left;color: #111;font-family:Arial; padding-bottom: 7px">{{cate1}}</h5>
+				{% endif %}
+			</div>
+			<div class="dropdown col-md-4">
+			{% if isreviewer == 0 %}
+				    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Rate
+				    <span class="caret"></span></button>
+				    <ul class="dropdown-menu">
+				      <li><a href="/movie/{{ alb.m_title }}/1">1</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/2">2</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/3">3</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/4">4</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/5">5</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/6">6</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/7">7</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/8">8</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/9">9</a></li>
+				      <li><a href="/movie/{{ alb.m_title }}/10">10</a></li>
+				     
+				    </ul>
+		  
+		  		
+		  			<a href="/movie/{{ alb.m_title }}/0" class="btn btn-info" role="button">Watch</a>
+		  		{% else %}
+		  			<button class="btn btn-primary btn-lg" style = "position:relative;top:50%;left:25%;"data-toggle="modal" data-target="#myModalHorizontal">
+		  			    Rate
+		  			</button>
+		  			<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" 
+				       aria-labelledby="myModalLabel" aria-hidden="true">
+				      <div class="modal-dialog">
+				          <div class="modal-content">
+				              <!-- Modal Header -->
+				              <div class="modal-header">
+				                  <button type="button" class="close" 
+				                     data-dismiss="modal">
+				                         <span aria-hidden="true">&times;</span>
+				                         <span class="sr-only">Close</span>
+				                  </button>
+				                  <h4 class="modal-title" id="myModalLabel">
+				                      Enter your rating 
+				                  </h4>
+				              </div>
+				              
+				              <!-- Modal Body -->
+				             <form class="form-horizontal" method="get" role="form">
+				              		<div class="modal-body">
+				                  
+				                  
+					                    <div class="form-group">
+					                      <label class="col-sm-2 control-label"
+					                            for="inputPassword3">Rating</label>
+					                      <div class="col-sm-10">
+					                          <input type="text" class="form-control" name="dpurl" 
+					                              id="inputPassword3" placeholder="0-100"/>
+					                      </div>
+					                    </div>
+					              	</div>
+				              
+					              <!-- Modal Footer -->
+					              <div class="modal-footer">
+					                  <button type="button" class="btn btn-default"
+					                          data-dismiss="modal">
+					                              Close
+					                  </button>
+					                  <button type="submit" class="btn btn-primary">
+					                      Rate
+					                  </button>
+					              </div>
+				             </form>
+
+				          </div>
+				      </div>
+				  </div>
+		  		{% endif %}
+		  	</div>
+		</div>
+	</div>
+{% endblock %}

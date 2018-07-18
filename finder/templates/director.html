@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<!-- director1 , direc_movies -->
+
+	<link rel="stylesheet"  href="{% static 'profile.css' %}">
+	<div class="container profile">
+		<div class="row">
+			<div class = "col-md-4">
+				  <img src="{{director1.d_link}}" style="display:block;margin:auto;" width=200px height=200>
+				  <h1 class="text-center">{{director1.d_name}}</h1>
+				  <!-- Button trigger modal -->
+				  
+            </div>
+			<div class="col-md-8">
+				<!-- <div class="container"> -->  
+				<div class="row">
+					<h3>BIO</h3>
+					<p >{{director1.d_bio}}</p>
+				</div>  
+				<div class="row">
+				  <h3>Known For</h3>
+				  <table class="table table-striped">
+				    <tbody>
+				    	{% for mv in direc_movies %}
+				    	 <tr>
+				    	   <td><a href="{% url 'movieprof' mv.direc_title %}">{{mv.direc_title}}</a></td>
+				    	 </tr>		
+				    	{% endfor %}
+				    </tbody>
+				  </table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+	$("td").hover(function(){
+    $(this).css("background-color", "transparent");
+    }, function(){
+    $(this).css("background-color", "transparent");
+});
+</script>
+{% endblock %}

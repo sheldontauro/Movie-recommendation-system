@@ -1,0 +1,146 @@
+
+<html>
+<head>
+	<title>{% block title %}Movie Recommendation{% endblock %}</title>
+	{% load staticfiles %}
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+	<link rel="stylesheet" type="text/css" href="{% static '/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/test1.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/custom.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static '/booststrap-social.css' %}" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+        
+
+<style>
+	
+	.navli .nava {
+		color: white !important;
+	}
+	.navli:hover .nava:hover {
+		color: #707677 !important;
+	}
+	body {
+  		padding-top: 0px;
+	}
+	@media(min-width: 992px) {
+  		body{
+   	 		padding-top: 0px;
+  		}
+	}
+</style>
+
+        
+</head>
+
+
+<body>
+
+
+<nav class="navbar navbar-inverse"  style ="background-color: #CB2027;font-family:monospace;border-color: #CB2027">
+    <div class="container-fluid">
+	
+	<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'home' %}" class="nava">	
+					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;
+					Home
+				</a>
+			</li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+			<li class="navli">
+				<a href="{% url 'about' %}" class="nava">	
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
+					About
+				</a>
+			</li>
+	</ul>
+</nav>
+
+<h3 style ="text-align: center;color: #CB2027;font-family:monospace;">Our team</h3><!--Form-->
+
+<!-- <p style ="text-align: center;color: #CB2027;font-family:monospace;">(Your status should be "Available" if you haven't got a roomie yet)</p> -->
+<div class="row">
+        <br>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p160x160/15400308_1112021352242317_3082742932907376064_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeHUTloc-y0h4Alh-otBVd-_fQolqK05pMRYQhZF404OJLE-Mn7P-MoSlSUM2lYzcnn-bLvPdWic5lTqO3cbROvpQcixjPQs1VyUx9gvl34ehA&oh=9a3b93eea5706eaaa46eb0d132718211&oe=5B6A659A" alt="">
+          <h3>Ravi Chandra</h3>
+          <a class="btn btn-block btn-social btn-lg btn-facebook" background-color = #3B5998 href="https://www.facebook.com/profile.php?id=100003033881330">
+    			<span class="fa fa-facebook"></span>
+    			Facebook
+  		  </a>
+  		  <a class="btn btn-block btn-social btn-lg btn-github" background-color = #3B5998 href="https://github.com/rc4594">
+    			<span class="fa fa-github"></span>
+    			Github
+  		  </a>
+
+          <p></p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p160x160/28795023_1650222338393312_4931548321907998720_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEFZXAqGqe5XrlcWPpTiiig6xUV7HePbTW-Zqh_hYFzzfKnEmPgzisjr2pnHpPBnE6htt1MfanadWH0lQKD-lHc7jSHoJT30VMGYyUMu0yMQA&oh=f31b9e4feda031e6b9c18dab69b8f8d7&oe=5B6BD67F" alt="">
+          <h3>Nitin Raj Singh</h3>
+          <a class="btn btn-block btn-social btn-lg btn-facebook" background-color = #3B5998 href="https://www.facebook.com/Nitinrajsingh">
+    			<span class="fa fa-facebook"></span>
+    			Facebook
+  		  </a>
+  		  <a class="btn btn-block btn-social btn-lg btn-github" href="https://github.com/nitinrajsingh">
+    			<span class="fa fa-github"></span>
+    			Github
+  		  </a>
+          <p></p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-1/p160x160/20597398_728123947370901_6508535812400774135_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeHYvslD_Xzy9kz7qUUNU9Idwyv33deZ9PHqEiMfV04ssjOLUO_ZmjO0gS7TrbkJuOBRTZLnVWpuEaO0-irx_hGn-2Brxf3cLulk_d-7lWhJ4g&oh=c42819b8fd343881568d64cc9439a92a&oe=5B68BD7A" alt="">
+          <h3>Sheldon Tauro</h3>
+          <a class="btn btn-block btn-social btn-lg btn-facebook" background-color = #3B5998 href="https://www.facebook.com/sheldon.tauro.1">
+    			<span class="fa fa-facebook"></span>
+    			Facebook
+  		  </a>
+  		  <a class="btn btn-block btn-social btn-lg btn-github" background-color = #3B5998 href="https://github.com/sheldontauro">
+    			<span class="fa fa-github"></span>
+    			Github
+  		  </a>
+        </div>
+      </div>
+
+</div>
+<br>
+<br>
+
+<br>
+
+
+
+</body>
+</html>
+
+<!--  
+<body>
+ <h1>WElcome to the prject</h1>
+   <form method="POST" action="" class="post-form">{% csrf_token %}
+{{ form.as_p }}
+
+        
+{% for field in form %}
+	{% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+	<label>{{ field.label_tag }}</label>
+	<div> {{ field }} </div>	
+{% endfor %}
+
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% if message %}
+    <script>
+    	alert('RegisteredSuccesfully')
+
+    </script>
+{% endif %}
+</body> -->
+

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id="myCarousel" class="carousel slide container" data-ride="carousel">
+  <!-- Indicators -->
+  <link rel="stylesheet" href="{% static 'carou.css' %}">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" width>
+    <div class="item active">
+      <img src="{% static 'images/p.jpg' %}" alt="flash" width="1322" height="289">
+      <div class="carousel-caption">
+        <h3>EARLY MAN (2018)</h3>
+      </div>
+    </div>  
+    <div class="item">
+      <img src="{% static 'images/thor.jpg' %}" alt="thor" width="1322" height="289">
+      <div class="carousel-caption">
+        <h3>THOR (2018)</h3>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="{% static 'images/bp.jpg' %}" alt="bp" width="1322" height="289">
+      <div class="carousel-caption">
+        <h3>BLACK PANTHER (2018)</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<div class="container">
+     <div class="row ">
+       <div class="col-md-10 movie-list">
+         {% for movie in all_movies %}
+         <div class="container movie-card">
+           <div class="row">
+             <div class="col-md-1">
+               <img src="{{movie.m_url}}" width=80 height=102>
+             </div>
+             <div class="col-md-11">
+               <div class="row">
+                 <a class="movie-title" href="{% url 'movieprof' movie.m_title %}">{{movie.m_title}}</a>
+               </div>
+               <div class="row">
+                 <div class="col-md-6">
+                   <span class="rating">
+                    <p class="left"><img src="{% static 'images/rate.jpeg' %}"> {{movie.m_urating}}</p>
+                   </span>
+                 </div>
+                 <div class="col-md-6">
+                    {% if movie.m_rrating > bad1  %}
+                     <p class="meta-score ">Metascore: 
+                        <span style="display:block"class="text-center m_score1">{{movie.m_rrating}}</span>
+                     </p>
+                    {% elif movie.m_rrating > bad2 %}
+                     <p class="meta-score">Metascore:
+                        <span style="display:block" class="text-center m_score2">{{movie.m_rrating}}</span>
+                     </p>
+                    {% else %}
+                      <p class="meta-score">Metascore: 
+                          <span style="display:block" class="text-center m_score3">{{movie.m_rrating}}</span>
+                      </p>
+                    {%endif%}
+                 </div>
+                 <p>{{movie.m_description}}</p>
+               </div>
+             </div>
+           </div>
+         </div>
+         {% endfor %}
+       </div>
+       <div class="col-md-2 side">
+         <div class="container taga" style = "background-color:rgb(240,240,240)">
+           <p class="left"><img src="{% static 'images/tag_icon.png' %}" width=30 height=30>TAGS</p>
+            <div class="row text-center rowa" style = "background-color:rgb(185,185,185)">
+               <a href="/genre/action">action</a>
+            </div>
+            <div class="row text-center rowa" style = "background-color:rgb(185,185,185)">
+               <a href="/genre/sci-fi">sci-fi</a>
+            </div>
+            <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+                <a href="/genre/animation">animation</a>
+            </div>
+            <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+                <a href="/genre/crime">crime</a>
+            </div>
+           <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+              <a href="/genre/horror">horror</a>
+           </div>
+           <div class="row text-center rowa" style="background-color:rgb(185,185,185)">
+              <a href="/directors">directors</a>
+           </div>
+           </div>
+         </div>
+       </div>
+     </div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if all_movies.has_previous %}
+            <a href="?page={{ all_movies.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ all_movies.number }} of {{ all_movies.paginator.num_pages }}
+        </span>
+
+        {% if all_movies.has_next %}
+            <a href="?page={{ all_movies.next_page_number }}">Next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+  
